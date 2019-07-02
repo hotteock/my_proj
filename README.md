@@ -1,4 +1,4 @@
-# 이미지 시그널 프로세싱
+# Image signal processing
 
 
 1. 자동차 번호판 인식( 7/2 ~ )
