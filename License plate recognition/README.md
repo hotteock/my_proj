@@ -12,7 +12,7 @@
 - 수정 방안 검토 중 (7/4 ~)
   - https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python 참고 중
   - 여기서는 전처리 과정에서 대비를 확실하게 주어서 좀 더 명확한 imgthresholdsscene을 얻을 수 있었다.
-  - 이 전 방법에서의 canny를 활용하여도 충분하지 않을까? ( 두가지 다 확인해 볼 예정 )
+  - 이 전 방법에서의 canny를 활용하여도 충분하지 않을까? ( 두가지 다 확인해 볼 예정 ) => 큰 차이는 없었다.
   - KNN을 사용한 방법. (공부 필요)
   
   - 공부 결과
