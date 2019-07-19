@@ -35,4 +35,4 @@
   
 
   
-![ex_screenshot](my_proj/License plate recognition/ver2/20190719.png)
+![20190719](https://user-images.githubusercontent.com/38280229/61512166-fe6b2700-aa33-11e9-870e-d676c7e80b09.png)
