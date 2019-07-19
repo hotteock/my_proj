@@ -35,4 +35,4 @@
   
 
   
-![ex_screenshot](./License plate recognition/ver2/20190719.png)
+![ex_screenshot](my_proj/License plate recognition/ver2/20190719.png)
