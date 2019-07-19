@@ -34,3 +34,5 @@
   - 더불어서 pytesseract가 정상 작동하기 시작했다. 위의 영상에서는 config를 설정했었지만 오히려 config설정을 없애니 글자를 더 잘 읽어냈다.
   
 
+  
+![ex_screenshot](./License plate recognition/ver2/20190719.png)
