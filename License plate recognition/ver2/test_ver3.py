@@ -1,5 +1,3 @@
-# -*- coding: utf8 -*-
-
 import cv2
 import numpy as np
 import pytesseract
@@ -10,7 +8,7 @@ import Preprocess
 import PossibleChar
 #import DetectChars
 
-img = cv2.imread('1.jpg', cv2.IMREAD_COLOR)
+img = cv2.imread('1.jpg')
 
 listOfPossiblePlates = []
 
@@ -105,8 +103,8 @@ cv2.imwrite('rect.jpg', temp_res3)
 MAX_DIAG_MULTIPLYER = 5 # 5
 MAX_ANGLE_DIFF = 12.0 # 12.0
 MAX_AREA_DIFF = 0.5 # 0.5
-MAX_WIDTH_DIFF = 0.001
-MAX_HEIGHT_DIFF = 0.001
+MAX_WIDTH_DIFF = 0.1
+MAX_HEIGHT_DIFF = 0.1
 MIN_N_MATCHED = 3 # 3
 
 
@@ -130,9 +128,9 @@ def find_chars(contour_list):
             else:
                 angle_diff = np.degrees(np.arctan(dy / dx))
 
-            area_diff = abs(d1['w'] * d1['h'] - d2['w'] * d2['h']) / (d2['w'] * d2['h'])
-            width_diff = abs(d1['w'] - d2['w']) / d2['w']
-            height_diff = abs(d1['h'] - d2['h']) / d2['h']
+            area_diff = abs(d1['w'] * d1['h'] - d2['w'] * d2['h']) / (d1['w'] * d1['h'])
+            width_diff = abs(d1['w'] - d2['w']) / d1['w']
+            height_diff = abs(d1['h'] - d2['h']) / d1['h']
 
             if distance < diagonal_length1 * MAX_DIAG_MULTIPLYER \
                     and angle_diff < MAX_ANGLE_DIFF and area_diff < MAX_AREA_DIFF \
@@ -171,6 +169,8 @@ matched_result = []
 for idx_list in result_idx:
     matched_result.append(np.take(possible_contours, idx_list))
 
+# visualize possible contours
+
 temp_result = np.zeros((height, width, numChannels), dtype=np.uint8)
 
 for r in matched_result:
@@ -179,7 +179,7 @@ for r in matched_result:
         cv2.rectangle(temp_result, pt1=(d['x'], d['y']), pt2=(d['x'] + d['w'], d['y'] + d['h']), color=(255, 255, 255),
                       thickness=2)
 
-
+plt.imsave('rect4.jpg', temp_result)
 
 PLATE_WIDTH_PADDING = 1.3  # 1.3
 PLATE_HEIGHT_PADDING = 1.5  # 1.5
@@ -233,74 +233,7 @@ for i, matched_chars in enumerate(matched_result):
         'h': int(plate_height)
     })
 
-longest_idx, longest_text = -1, 0
-plate_chars = []
-
-
-for i, plate_img in enumerate(plate_imgs):
-    plate_img = cv2.resize(plate_img, dsize=(0, 0), fx=1.6, fy=1.6)
-    _, plate_img = cv2.threshold(plate_img, thresh=0.0, maxval=255.0, type=cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-
-################################################################################### find contours again (same as above)
-
-    contours, _ = cv2.findContours(plate_img, mode=cv2.RETR_LIST, method=cv2.CHAIN_APPROX_SIMPLE)
-
-    plate_min_x, plate_min_y = plate_img.shape[1], plate_img.shape[0]
-    plate_max_x, plate_max_y = 0, 0
-
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-
-        area = w * h
-        ratio = w / h
-
-        if area > MIN_AREA \
-                and w > MIN_WIDTH and h > MIN_HEIGHT \
-                and MIN_RATIO < ratio < MAX_RATIO:
-            if x < plate_min_x:
-                plate_min_x = x
-            if y < plate_min_y:
-                plate_min_y = y
-            if x + w > plate_max_x:
-                plate_max_x = x + w
-            if y + h > plate_max_y:
-                plate_max_y = y + h
-
-    img_result = plate_img.copy()
-
-
-    img_result = cv2.GaussianBlur(img_result, ksize=(3, 3), sigmaX=0)
-    _, img_result = cv2.threshold(img_result, thresh=0.0, maxval=255.0, type=cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-    img_result = cv2.copyMakeBorder(img_result, top=10, bottom=10, left=10, right=10, borderType=cv2.BORDER_CONSTANT,
-                                    value=(0, 0, 0))
-
-    plt.imsave('plate_res.jpg',img_result)
-
-    chars = pytesseract.image_to_string(img_result, lang='kor')
-
-    result_chars = ''
-    has_digit = False
-    for c in chars:
-        if ord(u'가') <= ord(c) <= ord(u'힣') or c.isdigit():
-            if c.isdigit():
-                has_digit = True
-            result_chars += c
-
-    plate_chars.append(result_chars)
-
-
-    if has_digit and len(result_chars) > longest_text:
-        longest_idx = i
-
-    #plt.imsave('res.jpg', img_result)
-
-info = plate_infos[longest_idx]
-chars = plate_chars[longest_idx]
-
-print(chars)
-
-
+    plt.imsave('rect5.jpg', img_cropped)
 
 
 
