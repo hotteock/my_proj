@@ -39,3 +39,5 @@
 
 
   - 번호판들의 다른 특징들은 없을까?? 혹은 머신러닝을 이용. (7/19 ~ ) 
+    - 번호판들을 명확하게 부각시키기 위해 Thresholding이 필요.
+    - threshold 함수를 이용한 thresholding의 경우 여러 조명이 있을경우 등 다양한 환경에서 좋은 성능을 기대하기 어렵다 => adaptive threshold를 이용
