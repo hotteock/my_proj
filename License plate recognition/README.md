@@ -43,8 +43,9 @@
     - threshold 함수를 이용한 thresholding의 경우 여러 조명이 있을경우 등 다양한 환경에서 좋은 성능을 기대하기 어렵다 => adaptive threshold를 이용
     - https://d2.naver.com/helloworld/8344782 
   
-  - 7/24 : 이미지 특징 추출 - https://datascienceschool.net/view-notebook/7eb4b2a440824bb0a8c2c7ce3da7a4e2/
-           엣지 추출(Laplacian), 캐니 엣지 추출 활용가능 할 것이다. 
-           결국, 엣지들을 찾고, 거기서 contour를 찾는 방식. contour외에는 다른 특징은 없을까? 
-           이미지 세그먼테이션에 대해 공부.
+  - 7/24 
+    1.이미지 특징 추출 - https://datascienceschool.net/view-notebook/7eb4b2a440824bb0a8c2c7ce3da7a4e2/
+      엣지 추출(Laplacian), 캐니 엣지 추출 활용가능 할 것이다. 
+      결국, 엣지들을 찾고, 거기서 contour를 찾는 방식. contour외에는 다른 특징은 없을까? 
+    2.이미지 세그먼테이션에 대해 공부.
   
