@@ -45,11 +45,11 @@
   
   - 7/24 
     
-    1.이미지 특징 추출 - https://datascienceschool.net/view-notebook/7eb4b2a440824bb0a8c2c7ce3da7a4e2/
+    1. 이미지 특징 추출 - https://datascienceschool.net/view-notebook/7eb4b2a440824bb0a8c2c7ce3da7a4e2/
       엣지 추출(Laplacian), 캐니 엣지 추출 활용가능 할 것이다. 
       결국, 엣지들을 찾고, 거기서 contour를 찾는 방식. contour외에는 다른 특징은 없을까? 
     
-    2.이미지 세그먼테이션에 대해 공부.
+    2. 이미지 세그먼테이션에 대해 공부.
       
       segmentation 문제는 주어진 이미지 안에 어느 특정한 클래스에 해당하는 사물이 어느 위치에 포함되어 있는지 '픽셀 단위로'분할하는 모델을 만드는 것을 목표로 한다. 이는 사물의 위치를 바운딩 박스로 표혀시하는 Detection 문제보다 더 자세하게 위치를 표시해야 하기 때문에, Detection 문제보다 더 어려운 문제에 해당한다. Sementic segmentation 과 Instance segmentation 의 두가지 세부 문제로 구분할 수 있다. segmentation 문제는 모든 픽셀에 ㅐ하여 ㄷ클래스 분류를 수행해야 한다는 점에서 소요시간이 매우 길다. 따라서 적합하지 않을 것으로 보인다
     
